@@ -1,0 +1,60 @@
+/* Container for the entire page */
+.student-details-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background: #f0f2f5;
+}
+
+/* Card style */
+.student-card {
+  background: #fff;
+  padding: 30px 40px;
+  border-radius: 12px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+  width: 350px;
+  text-align: left;
+}
+
+/* Title of the card */
+.student-card h1 {
+  text-align: center;
+  margin-bottom: 20px;
+  color: #333;
+  font-size: 24px;
+}
+
+/* Each detail row */
+.detail-row {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 15px;
+  font-size: 16px;
+}
+
+/* Label in detail row */
+.detail-row .label {
+  font-weight: bold;
+  color: #555;
+}
+
+/* Value in detail row */
+.detail-row .value {
+  color: #333;
+}
+
+/* Not found page styling */
+.not-found-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background: #f0f2f5;
+}
+
+.not-found-text {
+  color: rgb(0, 0, 0);
+  font-size: 24px;
+  text-align: center;
+}
