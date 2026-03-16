@@ -1,8 +1,10 @@
 import { useState } from "react";
 import "./App.css";
-import { BrowserRouter, Routes, Route, useNavigate } from "react-router";
+import { BrowserRouter, Routes, Route, Link, useNavigate } from "react-router"; // fixed import
 import StudentDetails from "./components/StudentDetails";
+import Home from "./pages/Home";
 
+// RegistrationForm component
 function RegistrationForm({ students, setStudents }) {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
@@ -26,7 +28,7 @@ function RegistrationForm({ students, setStudents }) {
     }
 
     const newStudent = {
-      id: (students.length + 1).toString(), // simple incremental ID
+      id: (students.length + 1).toString(),
       name,
       email,
       course,
@@ -36,13 +38,16 @@ function RegistrationForm({ students, setStudents }) {
     setError("");
     alert("Student Registered Successfully!");
 
-    // Redirect to the student's detail page
+    // Redirect to student details
     navigate(`/student/${newStudent.id}`);
   };
 
   return (
     <div style={{ textAlign: "center", marginTop: "50px" }}>
       <h1>Student Registration</h1>
+      <Link to="/home" style={{ display: "inline-block", marginBottom: "20px" }}>
+        ← Go to Home
+      </Link>
 
       <form onSubmit={handleSubmit}>
         <div>
@@ -79,23 +84,29 @@ function RegistrationForm({ students, setStudents }) {
   );
 }
 
+// App component
 function App() {
   const [students, setStudents] = useState([]);
 
   return (
     <BrowserRouter>
+      {/* Navbar for Home link */}
+      <nav style={{ textAlign: "center", margin: "20px 0" }}>
+        <Link to="/">Register</Link> | <Link to="/home">Home</Link>
+      </nav>
+
       <Routes>
-        {/* MAIN PAGE */}
+        {/* Registration page */}
         <Route
           path="/"
           element={<RegistrationForm students={students} setStudents={setStudents} />}
         />
 
-        {/* DYNAMIC ROUTE FOR STUDENT DETAILS */}
-        <Route
-          path="/student/:id"
-          element={<StudentDetails students={students} />}
-        />
+        {/* Home page showing all students */}
+        <Route path="/home" element={<Home students={students} />} />
+
+        {/* Dynamic student details page */}
+        <Route path="/student/:id" element={<StudentDetails students={students} />} />
       </Routes>
     </BrowserRouter>
   );
